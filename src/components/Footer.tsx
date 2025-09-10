@@ -2,9 +2,9 @@ const Footer = () => {
   return (
     <footer className="bg-primary py-16 mt-32">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-8 mb-12">
           {/* Logo */}
-          <div className="space-y-4">
+          <div className="space-y-4 col-span-3">
             <div className="text-3xl font-display font-bold text-foreground">
               MNTN
             </div>
@@ -13,10 +13,14 @@ const Footer = () => {
               <br />
               slope, mountain & destination!
             </p>
+
+            <p className="text-muted-foreground !mt-28">
+              Copyright {new Date().getFullYear()} MNTN, Inc. Terms & Privacy
+            </p>
           </div>
 
           {/* More on The Blog */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-fit col-span-2">
             <h3 className="text-accent font-semibold text-lg">More on The Blog</h3>
             <div className="space-y-3">
               <a href="#" className="block text-foreground hover:text-accent transition-colors">
@@ -38,7 +42,7 @@ const Footer = () => {
           </div>
 
           {/* More on MNTN */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-fit col-span-1">
             <h3 className="text-accent font-semibold text-lg">More on MNTN</h3>
             <div className="space-y-3">
               <a href="#" className="block text-foreground hover:text-accent transition-colors">
@@ -54,7 +58,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h3 className="text-accent font-semibold text-lg">Stay Connected</h3>
             <p className="text-muted-foreground">
               Subscribe to our newsletter for the latest mountain adventures and tips.
@@ -76,13 +80,7 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-          </div>
-        </div>
-
-        <div className="border-t border-border pt-8">
-          <p className="text-muted-foreground text-center">
-            Copyright {new Date().getFullYear()} MNTN, Inc. Terms & Privacy
-          </p>
+          </div> */}
         </div>
       </div>
     </footer>

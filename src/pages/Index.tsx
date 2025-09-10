@@ -7,9 +7,9 @@ import HeroSection from '@/components/HeroSection';
 import ContentSection from '@/components/ContentSection';
 import Footer from '@/components/Footer';
 
-import hikerGuide from '@/assets/hiker-guide.jpg';
-import hikingGear from '@/assets/hiking-gear.jpg';
-import compassNavigation from '@/assets/compass-navigation.jpg';
+import hikerGuide from '@/assets/01.png';
+import hikingGear from '@/assets/02.png';
+import compassNavigation from '@/assets/03.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,7 +46,7 @@ const Index = () => {
         <ContentSection
           sectionNumber="01"
           category="GET STARTED"
-          title="What level of hiker are you?"
+          title={<span>What level of hiker <br /> are you?</span>}
           description="Determining what level of hiker you are can be an important tool when planning future hikes. This hiking guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker. What type of hiker are you – novice, moderate, advanced moderate, expert, or expert backpacker?"
           buttonText="read more"
           image={hikerGuide}
