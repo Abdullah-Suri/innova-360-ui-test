@@ -98,7 +98,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
+    <section ref={heroRef} id='section-0' className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div
         ref={imageRef}

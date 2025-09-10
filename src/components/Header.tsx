@@ -22,9 +22,9 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-3xl font-display font-bold text-foreground">
+          <a href='#section-0' className="text-3xl font-display font-bold text-foreground">
             MNTN
-          </div>
+          </a>
 
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-foreground hover:text-accent transition-colors font-medium">Equipment</a>
