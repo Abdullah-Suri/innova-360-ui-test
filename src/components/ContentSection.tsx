@@ -113,27 +113,39 @@ const ContentSection: React.FC<ContentSectionProps> = ({
     });
   }, [reverse]);
 
-  // Crazy hover effects
+  // Unique Magnetic & Ripple Effects
   const handleMouseEnter = () => {
     const tl = gsap.timeline();
     
+    // Magnetic scale and glow
     tl.to(imageRef.current, {
-      scale: 1.1,
-      rotation: 2,
-      duration: 0.6,
-      ease: "power2.out"
+      scale: 1.05,
+      duration: 0.8,
+      ease: "back.out(1.7)"
     })
     .to(overlayRef.current, {
-      opacity: 0.3,
-      duration: 0.4,
+      opacity: 0.4,
+      duration: 0.6,
       ease: "power2.out"
     }, 0)
     .to(glowRef.current, {
       opacity: 1,
-      scale: 1.05,
-      duration: 0.8,
+      scale: 1.2,
+      duration: 1,
       ease: "power2.out"
     }, 0);
+
+    // Create ripple effect
+    gsap.fromTo(overlayRef.current, 
+      { 
+        background: "radial-gradient(circle at 50% 50%, hsl(var(--accent) / 0.3) 0%, transparent 0%)" 
+      },
+      {
+        background: "radial-gradient(circle at 50% 50%, hsl(var(--accent) / 0.1) 30%, transparent 70%)",
+        duration: 1.2,
+        ease: "power2.out"
+      }
+    );
   };
 
   const handleMouseLeave = () => {
@@ -141,19 +153,21 @@ const ContentSection: React.FC<ContentSectionProps> = ({
     
     tl.to(imageRef.current, {
       scale: 1,
-      rotation: 0,
-      duration: 0.8,
-      ease: "elastic.out(1, 0.8)"
+      x: 0,
+      y: 0,
+      duration: 1.2,
+      ease: "elastic.out(1, 0.5)"
     })
     .to(overlayRef.current, {
       opacity: 0,
-      duration: 0.4,
+      background: "radial-gradient(circle at 50% 50%, hsl(var(--accent) / 0.3) 0%, transparent 0%)",
+      duration: 0.6,
       ease: "power2.out"
     }, 0)
     .to(glowRef.current, {
       opacity: 0,
       scale: 1,
-      duration: 0.6,
+      duration: 0.8,
       ease: "power2.out"
     }, 0);
   };
@@ -168,22 +182,31 @@ const ContentSection: React.FC<ContentSectionProps> = ({
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    const rotateX = (y - centerY) / centerY * -10;
-    const rotateY = (x - centerX) / centerX * 10;
+    // Magnetic attraction effect
+    const magneticX = (x - centerX) * 0.15;
+    const magneticY = (y - centerY) * 0.15;
     
     gsap.to(imageRef.current, {
-      rotationX: rotateX,
-      rotationY: rotateY,
-      transformPerspective: 1000,
+      x: magneticX,
+      y: magneticY,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    // Dynamic ripple following cursor
+    const cursorX = (x / rect.width) * 100;
+    const cursorY = (y / rect.height) * 100;
+    
+    gsap.to(overlayRef.current, {
+      background: `radial-gradient(circle at ${cursorX}% ${cursorY}%, hsl(var(--accent) / 0.3) 0%, hsl(var(--primary) / 0.2) 40%, transparent 70%)`,
       duration: 0.3,
       ease: "power2.out"
     });
 
-    // Parallax overlay movement
-    gsap.to(overlayRef.current, {
-      x: (x - centerX) * 0.1,
-      y: (y - centerY) * 0.1,
-      duration: 0.3,
+    // Glow follows cursor
+    gsap.to(glowRef.current, {
+      background: `radial-gradient(circle at ${cursorX}% ${cursorY}%, hsl(var(--accent) / 0.4), hsl(var(--primary) / 0.2), transparent)`,
+      duration: 0.4,
       ease: "power2.out"
     });
   };
@@ -223,22 +246,22 @@ const ContentSection: React.FC<ContentSectionProps> = ({
             </div>
           </div>
 
-          {/* Image with Crazy Hover Effects */}
+          {/* Image with Unique Magnetic & Ripple Effects */}
           <div className="w-[500px] relative">
             <div 
               ref={imageContainerRef}
-              className="relative cursor-pointer"
+              className="relative cursor-pointer group"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
             >
-              {/* Glow Effect */}
+              {/* Dynamic Glow Effect */}
               <div 
                 ref={glowRef}
-                className="absolute -inset-4 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 rounded-lg blur-xl opacity-0 -z-10"
+                className="absolute -inset-6 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 rounded-xl blur-2xl opacity-0 -z-10 transition-all duration-500"
               />
               
-              {/* Main Image */}
+              {/* Main Image Container */}
               <div ref={imageRef} className="relative overflow-hidden rounded-sm shadow-2xl">
                 <img
                   src={image}
@@ -246,14 +269,21 @@ const ContentSection: React.FC<ContentSectionProps> = ({
                   className="w-full h-full object-cover transition-all duration-300"
                 />
                 
-                {/* Dynamic Color Overlay */}
+                {/* Dynamic Ripple Overlay */}
                 <div 
                   ref={overlayRef}
-                  className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-primary/20 opacity-0 mix-blend-overlay"
+                  className="absolute inset-0 opacity-0 mix-blend-overlay transition-opacity duration-300"
                 />
                 
                 {/* Static Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                
+                {/* Sparkle Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-accent rounded-full animate-pulse delay-100"></div>
+                  <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-accent rounded-full animate-pulse delay-300"></div>
+                  <div className="absolute bottom-1/4 left-3/4 w-1.5 h-1.5 bg-accent rounded-full animate-pulse delay-500"></div>
+                </div>
               </div>
             </div>
           </div>
