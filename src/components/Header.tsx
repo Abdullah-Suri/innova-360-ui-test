@@ -17,7 +17,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ${isScrolled
         ? 'glass-card border-b border-border/20 container mx-auto top-3 rounded-full'
-        : 'bg-transparent'
+        : 'bg-transparent border-none'
         }`}
     >
       <div className="container mx-auto px-6 py-4">

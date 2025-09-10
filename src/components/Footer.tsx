@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="bg-primary py-16 mt-32">
-      <div className="container mx-auto px-6">
+    <footer className="bg-background py-16 ">
+      <div className="container mx-auto px-6 pt-32 border-t border-border/50">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-8 mb-12">
           {/* Logo */}
           <div className="space-y-4 col-span-3">
