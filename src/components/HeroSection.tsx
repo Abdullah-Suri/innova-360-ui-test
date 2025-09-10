@@ -150,12 +150,12 @@ const HeroSection = () => {
               </h1>
             </div>
 
-            <div className="flex items-center space-x-4 text-foreground/80">
+            <a href="#section-01" className="flex items-center space-x-4 text-foreground/80">
               <span className="text-sm font-medium">scroll down</span>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
-            </div>
+            </a>
           </div>
 
           {/* <div ref={buttonRef} className="mt-12">
@@ -172,9 +172,9 @@ const HeroSection = () => {
           <span className="text-sm font-medium tracking-wider -rotate-90 origin-center">Start</span>
           <div className="w-px h-16 bg-foreground/50" />
           <div className="flex flex-col space-y-2">
-            <span className="text-xs">01</span>
-            <span className="text-xs opacity-60">02</span>
-            <span className="text-xs opacity-40">03</span>
+            <a href='#section-01' className="text-xs">01</a>
+            <a href='#section-02' className="text-xs opacity-60">02</a>
+            <a href='#section-03' className="text-xs opacity-40">03</a>
           </div>
         </div>
       </div>
